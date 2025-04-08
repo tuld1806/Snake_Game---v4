@@ -117,7 +117,7 @@ void drawCherry(SDL_Renderer* renderer, Position pos){
     drawCell(renderer, graphics->getImage(CHERRY), pos, RIGHT);
 }
 void renderSplashScreen(SDL_Renderer* renderer){
-    std::cout << "Press any key to start game." << std::endl;
+    std::cout << "Click play to start game." << std::endl;
     std::cout << "Click to pause game or continue." << std::endl;
     SDL_RenderCopy(renderer, graphics->getImage(MAP), NULL, NULL);
     SDL_RenderCopy(renderer, graphics->getImage(PLAY_BUTTON), nullptr, &playGrid);
