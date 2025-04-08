@@ -8,8 +8,9 @@ void renderGameOver(SDL_Renderer* renderer);
 void pauseProcess(SDL_Event* e);
 bool pauseState = false, startState = false;
 Graphics* graphics = nullptr; // global picture manager
-Game game(BOARD_WIDTH, BOARD_HEIGHT);
+Game* game = new Game(BOARD_WIDTH, BOARD_HEIGHT);
 SDL_Rect playGrid = {385, 250, 150, 54};
+int highestScore = 0;
 int main(int argc, char* argv[]){
 
     SDL_Window* window;
@@ -19,30 +20,34 @@ int main(int argc, char* argv[]){
     SDL_Event e;
     auto start = CLOCK_NOW();
 
-    renderSplashScreen(renderer);
-    renderGameplay(renderer);
-    while (true) {
-        while (SDL_PollEvent(&e)) {
+    while(true){
+        renderSplashScreen(renderer);
+        renderGameplay(renderer);
+        while (true) {
+            while (SDL_PollEvent(&e)) {
 
-            pauseProcess(&e);
-            if(!pauseState)game.interpretEvent(e);
-        }
-
-        if(!pauseState){
-
-            auto end = CLOCK_NOW();
-            ElapsedTime elapsed = end-start;
-            if (elapsed.count() > STEP_DELAY) {
-                game.processInput();
-                if(game.getStatus() == GAME_OVER)break;
-                renderGameplay(renderer);
-                start = end;
+                pauseProcess(&e);
+                if(!pauseState)game->interpretEvent(e);
             }
-            SDL_Delay(1);
+
+            if(!pauseState){
+
+                auto end = CLOCK_NOW();
+                ElapsedTime elapsed = end-start;
+                if (elapsed.count() > STEP_DELAY) {
+                    game->processInput();
+                    if(game->getStatus() == GAME_OVER)break;
+                    renderGameplay(renderer);
+                    start = end;
+                }
+                SDL_Delay(1);
+            }
+            else renderGameplay(renderer);
         }
-        else renderGameplay(renderer);
+        renderGameOver(renderer);
+        delete game;
+        game = new Game(BOARD_WIDTH, BOARD_HEIGHT);
     }
-    renderGameOver(renderer);
 
 
     delete graphics;
@@ -123,8 +128,8 @@ void renderSplashScreen(SDL_Renderer* renderer){
 void renderGameplay(SDL_Renderer* renderer){
 
     SDL_RenderCopy(renderer, graphics->getImage(MAP), NULL, NULL);
-    drawSnake(renderer, game.snake.getNodes());
-    drawCherry(renderer, game.cherry.getPos());
+    drawSnake(renderer, game->snake.getNodes());
+    drawCherry(renderer, game->cherry.getPos());
     if(pauseState)
         SDL_RenderCopy(renderer, graphics->getImage(PLAY_BUTTON), nullptr, &playGrid);
     SDL_RenderPresent(renderer);
@@ -134,8 +139,10 @@ void renderGameOver(SDL_Renderer* renderer){
     SDL_RenderCopy(renderer, graphics->getImage(MAP), NULL, NULL);
     SDL_RenderCopy(renderer, graphics->getImage(ENDING), nullptr, &playGrid);
     SDL_RenderPresent(renderer);
-    std::cout<<"Your score is: "<<game.pts<<std::endl;
-    SDL_Delay(1000);
+    std::cout<<"Your score is: "<<game->pts<<std::endl;
+    if(highestScore < game->pts)highestScore = game->pts;
+    std::cout<<"Your highest score is: "<<highestScore<<std::endl;
+    SDL_Delay(1500);
 }
 void pauseProcess(SDL_Event* e){
     if(e->type == SDL_KEYDOWN)

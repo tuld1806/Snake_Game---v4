@@ -12,6 +12,17 @@ Snake::Snake(Game& game_, Position start, Direction initDirection): game(game_),
     tail->NodeDirection = currentDirection;
 }
 
+Snake::~Snake() {
+
+    SnakeNode* current = head;
+    while (current != nullptr) {
+        SnakeNode* nextNode = current->next;
+        delete current;
+        current = nextNode;
+    }
+    head = nullptr;
+    tail = nullptr;
+}
 std::vector<SnakeNode*> Snake::getNodes(){
     std::vector<SnakeNode*> nodes;
     for(SnakeNode* p = tail; p != nullptr; p = p->next){

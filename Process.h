@@ -23,6 +23,7 @@ public:
     int pts;
 
     Game(int width_, int height_);
+    ~Game();
     void interpretEvent(SDL_Event e);
     void processInput();
 

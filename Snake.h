@@ -21,6 +21,7 @@ class Snake{
 public:
     Direction currentDirection;
     Snake(Game& game_, Position start, Direction currentDirection);
+    ~Snake();
     std::vector<SnakeNode*> getNodes();
     //void snakeLeave();
     void slideTo(Position newPosition);

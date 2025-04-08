@@ -10,6 +10,16 @@ Game::Game(int width_, int height_):
     box[width_/2 - 1][height_/2] = CELL_SNAKE;
     box[width_/2 - 2][height_/2] = CELL_SNAKE;
 }
+
+Game::~Game() {
+    box.clear();
+    while (!inputQueue.empty()) {
+        inputQueue.pop();
+    }
+    pts = 0;
+    isEaten = 0;
+    status = GAME_RUNNING;
+}
 void Game::interpretEvent(SDL_Event e){
     if(e.type == SDL_KEYUP){
         switch(e.key.keysym.sym){

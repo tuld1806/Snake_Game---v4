@@ -13,3 +13,7 @@ void Cherry::addCherry(){
     cherryPos = p;
     game.setCellType(p, CELL_CHERRY);
 }
+
+Cherry::~Cherry(){
+    status = SMALL1;
+}
