@@ -22,7 +22,7 @@ int main(int argc, char* argv[]){
 
     renderSplashScreen();
     auto start = CLOCK_NOW();
-
+//bhudfjbvjhb
     renderGameplay(renderer);
     while (true) {
         while (SDL_PollEvent(&e)) {
