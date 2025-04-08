@@ -1,0 +1,244 @@
+# depslib dependency file v1.0
+1743830871 source:c:\users\admin\documents\code\myproject\snake_game\main.cpp
+	"Graphics.h"
+	<cmath>
+	"Process.h"
+
+1743827668 source:c:\users\admin\documents\code\myproject\snake_game\graphics.cpp
+	"Graphics.h"
+	<SDL_image.h>
+
+1743438395 c:\users\admin\documents\code\myproject\snake_game\graphics.h
+	<vector>
+	<string>
+	<SDL.h>
+	<iostream>
+
+1743595879 c:\users\admin\documents\code\myproject\snake_game\main.h
+	<chrono>
+	<ctime>
+	<SDL.h>
+
+1743828644 source:c:\users\admin\documents\code\myproject\snake_game\snake.cpp
+	"Snake.h"
+
+1743831697 c:\users\admin\documents\code\myproject\snake_game\snake.h
+	"Position.h"
+	<iostream>
+	<vector>
+
+1743444562 c:\users\admin\documents\code\myproject\snake_game\position.h
+	"main.h"
+
+1743831503 source:c:\users\admin\documents\code\myproject\snake_game\cherry.cpp
+	"Cherry.h"
+	<cstdlib>
+	<ctime>
+	<iostream>
+
+1743831978 c:\users\admin\documents\code\myproject\snake_game\cherry.h
+	"Position.h"
+
+1743831751 c:\users\admin\documents\code\myproject\snake_game\process.h
+	"Snake.h"
+	"Cherry.h"
+	<queue>
+
+1743828731 source:c:\users\admin\documents\code\myproject\snake_game\process.cpp
+	"Process.h"
+
+1743831503 source:c:\users\admin\documents\code\myproject\snake_game - copy\cherry.cpp
+	"Cherry.h"
+	<cstdlib>
+	<ctime>
+	<iostream>
+
+1743831978 c:\users\admin\documents\code\myproject\snake_game - copy\cherry.h
+	"Position.h"
+
+1743444562 c:\users\admin\documents\code\myproject\snake_game - copy\position.h
+	"main.h"
+
+1743595879 c:\users\admin\documents\code\myproject\snake_game - copy\main.h
+	<chrono>
+	<ctime>
+	<SDL.h>
+
+1743827668 source:c:\users\admin\documents\code\myproject\snake_game - copy\graphics.cpp
+	"Graphics.h"
+	<SDL_image.h>
+
+1743438395 c:\users\admin\documents\code\myproject\snake_game - copy\graphics.h
+	<vector>
+	<string>
+	<SDL.h>
+	<iostream>
+
+1743830871 source:c:\users\admin\documents\code\myproject\snake_game - copy\main.cpp
+	"Graphics.h"
+	<cmath>
+	"Process.h"
+
+1743831751 c:\users\admin\documents\code\myproject\snake_game - copy\process.h
+	"Snake.h"
+	"Cherry.h"
+	<queue>
+
+1743831697 c:\users\admin\documents\code\myproject\snake_game - copy\snake.h
+	"Position.h"
+	<iostream>
+	<vector>
+
+1743831989 source:c:\users\admin\documents\code\myproject\snake_game - copy\process.cpp
+	"Process.h"
+
+1743828644 source:c:\users\admin\documents\code\myproject\snake_game - copy\snake.cpp
+	"Snake.h"
+
+1743831503 source:c:\users\admin\documents\code\myproject\snake_game - v2\cherry.cpp
+	"Cherry.h"
+	<cstdlib>
+	<ctime>
+	<iostream>
+
+1743831978 c:\users\admin\documents\code\myproject\snake_game - v2\cherry.h
+	"Position.h"
+
+1743444562 c:\users\admin\documents\code\myproject\snake_game - v2\position.h
+	"main.h"
+
+1743595879 c:\users\admin\documents\code\myproject\snake_game - v2\main.h
+	<chrono>
+	<ctime>
+	<SDL.h>
+
+1743827668 source:c:\users\admin\documents\code\myproject\snake_game - v2\graphics.cpp
+	"Graphics.h"
+	<SDL_image.h>
+
+1743438395 c:\users\admin\documents\code\myproject\snake_game - v2\graphics.h
+	<vector>
+	<string>
+	<SDL.h>
+	<iostream>
+
+1743963341 source:c:\users\admin\documents\code\myproject\snake_game - v2\main.cpp
+	"Graphics.h"
+	<cmath>
+	"Process.h"
+
+1743846682 c:\users\admin\documents\code\myproject\snake_game - v2\process.h
+	"Snake.h"
+	"Cherry.h"
+	<queue>
+
+1743962970 c:\users\admin\documents\code\myproject\snake_game - v2\snake.h
+	"Position.h"
+	<iostream>
+	<vector>
+
+1743963453 source:c:\users\admin\documents\code\myproject\snake_game - v2\snake.cpp
+	"Snake.h"
+	"Process.h"
+
+1743862873 source:c:\users\admin\documents\code\myproject\snake_game - v2\process.cpp
+	"Process.h"
+
+1743831503 source:c:\users\admin\documents\code\myproject\snake_game - v3\cherry.cpp
+	"Cherry.h"
+	<cstdlib>
+	<ctime>
+	<iostream>
+
+1743831978 c:\users\admin\documents\code\myproject\snake_game - v3\cherry.h
+	"Position.h"
+
+1743444562 c:\users\admin\documents\code\myproject\snake_game - v3\position.h
+	"main.h"
+
+1744003507 c:\users\admin\documents\code\myproject\snake_game - v3\main.h
+	<chrono>
+	<ctime>
+	<SDL.h>
+
+1743827668 source:c:\users\admin\documents\code\myproject\snake_game - v3\graphics.cpp
+	"Graphics.h"
+	<SDL_image.h>
+
+1743438395 c:\users\admin\documents\code\myproject\snake_game - v3\graphics.h
+	<vector>
+	<string>
+	<SDL.h>
+	<iostream>
+
+1743995872 source:c:\users\admin\documents\code\myproject\snake_game - v3\process.cpp
+	"Process.h"
+
+1743993330 c:\users\admin\documents\code\myproject\snake_game - v3\process.h
+	"Snake.h"
+	"Cherry.h"
+	<queue>
+
+1743962970 c:\users\admin\documents\code\myproject\snake_game - v3\snake.h
+	"Position.h"
+	<iostream>
+	<vector>
+
+1743996019 source:c:\users\admin\documents\code\myproject\snake_game - v3\snake.cpp
+	"Snake.h"
+	"Process.h"
+
+1744003361 source:c:\users\admin\documents\code\myproject\snake_game - v3\main.cpp
+	"Graphics.h"
+	<cmath>
+	"Process.h"
+
+1743831503 source:c:\users\admin\documents\code\myproject\snake_game - v4\cherry.cpp
+	"Cherry.h"
+	<cstdlib>
+	<ctime>
+	<iostream>
+
+1744017914 c:\users\admin\documents\code\myproject\snake_game - v4\cherry.h
+	"Position.h"
+
+1743444562 c:\users\admin\documents\code\myproject\snake_game - v4\position.h
+	"main.h"
+
+1744003507 c:\users\admin\documents\code\myproject\snake_game - v4\main.h
+	<chrono>
+	<ctime>
+	<SDL.h>
+
+1744081360 source:c:\users\admin\documents\code\myproject\snake_game - v4\graphics.cpp
+	"Graphics.h"
+	<SDL_image.h>
+
+1744081739 c:\users\admin\documents\code\myproject\snake_game - v4\graphics.h
+	<vector>
+	<string>
+	<SDL.h>
+	<iostream>
+
+1744017631 source:c:\users\admin\documents\code\myproject\snake_game - v4\process.cpp
+	"Process.h"
+
+1744017254 c:\users\admin\documents\code\myproject\snake_game - v4\process.h
+	"Snake.h"
+	"Cherry.h"
+	<queue>
+
+1744016612 c:\users\admin\documents\code\myproject\snake_game - v4\snake.h
+	"Position.h"
+	<iostream>
+	<vector>
+
+1744015312 source:c:\users\admin\documents\code\myproject\snake_game - v4\snake.cpp
+	"Snake.h"
+	"Process.h"
+
+1744082881 source:c:\users\admin\documents\code\myproject\snake_game - v4\main.cpp
+	"Graphics.h"
+	<cmath>
+	"Process.h"
+
