@@ -19,7 +19,8 @@ public:
     Snake snake;
     Cherry cherry;
     std:: queue<Direction> inputQueue;
-    int score;
+    int isEaten;
+    int pts;
 
     Game(int width_, int height_);
     void interpretEvent(SDL_Event e);

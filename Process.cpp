@@ -4,7 +4,7 @@ Game::Game(int width_, int height_):
     snake(*this, Position(width_/2, height_/2), RIGHT),
     box(width_, std::vector<CellType>(height_, CELL_EMPTY)),
     cherry(SMALL1, *this), status(GAME_RUNNING),
-    score(0){
+    isEaten(0), pts(0){
     box[0][0] = CELL_CHERRY;
     box[width_/2][height_/2] = CELL_SNAKE;
     box[width_/2 - 1][height_/2] = CELL_SNAKE;
@@ -31,7 +31,8 @@ void Game::processColision(Position pos){
             status = GAME_OVER;
             break;
         case CELL_CHERRY:
-            score++;
+            isEaten++;
+            pts++;
             setCellType(pos, CELL_SNAKE);
             cherry.addCherry();
             break;

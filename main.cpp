@@ -2,10 +2,11 @@
 #include <cmath>
 #include "Process.h"
 
-void renderSplashScreen();
+void renderSplashScreen(SDL_Renderer* renderer);
 void renderGameplay(SDL_Renderer* renderer);
+void renderGameOver(SDL_Renderer* renderer);
 void pauseProcess(SDL_Event* e);
-bool pauseState = false;
+bool pauseState = false, startState = false;
 Graphics* graphics = nullptr; // global picture manager
 Game game(BOARD_WIDTH, BOARD_HEIGHT);
 SDL_Rect playGrid = {385, 250, 150, 54};
@@ -16,9 +17,9 @@ int main(int argc, char* argv[]){
     initSDL(window, renderer, SCREEN_WIDTH, SCREEN_HEIGHT, WINDOW_TITLE);
     graphics = new Graphics(renderer);
     SDL_Event e;
-    renderSplashScreen();
     auto start = CLOCK_NOW();
 
+    renderSplashScreen(renderer);
     renderGameplay(renderer);
     while (true) {
         while (SDL_PollEvent(&e)) {
@@ -39,18 +40,10 @@ int main(int argc, char* argv[]){
             }
             SDL_Delay(1);
         }
-        else {
-            renderGameplay(renderer);
-            /*for(int j = 0; j< BOARD_HEIGHT; j++){
-                for(int i = 0; i< BOARD_WIDTH; i++)
-                    std::cout<<game.getCellType(Position(i, j))<<' ';
-                std::cout<<std::endl;
-            }
-            std::cout<<std::endl;
-            SDL_Delay(100);*/
-        }
-
+        else renderGameplay(renderer);
     }
+    renderGameOver(renderer);
+
 
     delete graphics;
     quitSDL(window, renderer);
@@ -118,11 +111,13 @@ void drawSnake(SDL_Renderer* renderer, std::vector<SnakeNode*> nodes ){
 void drawCherry(SDL_Renderer* renderer, Position pos){
     drawCell(renderer, graphics->getImage(CHERRY), pos, RIGHT);
 }
-void renderSplashScreen(){
+void renderSplashScreen(SDL_Renderer* renderer){
     std::cout << "Press any key to start game." << std::endl;
-    std::cout << "Press space to pause game or continue." << std::endl;
-
-    waitUntilKeyPressed();
+    std::cout << "Click to pause game or continue." << std::endl;
+    SDL_RenderCopy(renderer, graphics->getImage(MAP), NULL, NULL);
+    SDL_RenderCopy(renderer, graphics->getImage(PLAY_BUTTON), nullptr, &playGrid);
+    SDL_RenderPresent(renderer);
+    waitUntilClick(playGrid);
 }
 
 void renderGameplay(SDL_Renderer* renderer){
@@ -135,6 +130,13 @@ void renderGameplay(SDL_Renderer* renderer){
     SDL_RenderPresent(renderer);
 }
 
+void renderGameOver(SDL_Renderer* renderer){
+    SDL_RenderCopy(renderer, graphics->getImage(MAP), NULL, NULL);
+    SDL_RenderCopy(renderer, graphics->getImage(ENDING), nullptr, &playGrid);
+    SDL_RenderPresent(renderer);
+    std::cout<<"Your score is: "<<game.pts<<std::endl;
+    SDL_Delay(1000);
+}
 void pauseProcess(SDL_Event* e){
     if(e->type == SDL_KEYDOWN)
         if(e->key.keysym.sym == SDLK_SPACE)pauseState = !pauseState;

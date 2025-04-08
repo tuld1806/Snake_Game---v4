@@ -45,8 +45,8 @@ void Snake::growUp(Position newPosition){
 void Snake::move() {
     Position newPosition = head->position.move(currentDirection);
     game.processColision(newPosition);
-    if(game.score == 1){
-        game.score--;
+    if(game.isEaten == 1){
+        game.isEaten--;
         growUp(newPosition);
     }
     else {

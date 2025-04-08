@@ -32,13 +32,28 @@ void quitSDL(SDL_Window* window, SDL_Renderer* renderer){
 	SDL_Quit();
 }
 
-void waitUntilKeyPressed(){
-    SDL_Event e;
-    while (true) {
-        if ( SDL_WaitEvent(&e) != 0 &&
-             (e.type == SDL_KEYDOWN || e.type == SDL_QUIT) )
-            return;
-        SDL_Delay(500);
+#include <SDL.h>
+
+void waitUntilClick(SDL_Rect rect) {
+    SDL_Event event;
+    bool waiting = true;
+
+    while (waiting) {
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_QUIT) {
+                waiting = false;
+                break;
+            }
+            if (event.type == SDL_MOUSEBUTTONDOWN) {
+                int mouseX = event.button.x;
+                int mouseY = event.button.y;
+
+                if (mouseX >= rect.x && mouseX <= rect.x + rect.w &&
+                    mouseY >= rect.y && mouseY <= rect.y + rect.h) {
+                    waiting = false;
+                }
+            }
+        }
     }
 }
 
@@ -74,5 +89,6 @@ void Graphics::loadPictures(){
     pictures[SNAKE_TAIL] = loadTexture("tail.png");
     pictures[MAP] = loadTexture("map.jpg");
     pictures[PLAY_BUTTON] = loadTexture("play_button.png");
+    pictures[ENDING] = loadTexture("game_over.png");
 }
 

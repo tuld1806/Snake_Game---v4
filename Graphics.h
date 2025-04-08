@@ -8,7 +8,7 @@
 
 enum PictureID {
     CHERRY = 0, SNAKE_HEAD, SNAKE_CORNER,
-    SNAKE_BODY, SNAKE_TAIL, MAP, PLAY_BUTTON, PIC_COUNT
+    SNAKE_BODY, SNAKE_TAIL, MAP, PLAY_BUTTON, ENDING, PIC_COUNT
 };
 
 void logSDLError(const std::string &msg, bool fatal = false);
@@ -18,7 +18,7 @@ void initSDL(SDL_Window* &window, SDL_Renderer* &renderer,
 
 void quitSDL(SDL_Window* window, SDL_Renderer* renderer);
 
-void waitUntilKeyPressed();
+void waitUntilClick(SDL_Rect rect);
 
 class Graphics{
 
