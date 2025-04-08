@@ -3,10 +3,12 @@
 Game::Game(int width_, int height_):
     snake(*this, Position(width_/2, height_/2), RIGHT),
     box(width_, std::vector<CellType>(height_, CELL_EMPTY)),
-    cherry(SMALL1), status(GAME_RUNNING),
+    cherry(SMALL1, *this), status(GAME_RUNNING),
     score(0){
     box[0][0] = CELL_CHERRY;
     box[width_/2][height_/2] = CELL_SNAKE;
+    box[width_/2 - 1][height_/2] = CELL_SNAKE;
+    box[width_/2 - 2][height_/2] = CELL_SNAKE;
 }
 void Game::interpretEvent(SDL_Event e){
     if(e.type == SDL_KEYUP){
@@ -19,12 +21,23 @@ void Game::interpretEvent(SDL_Event e){
     }
 }
 
-void Game::processColision(Position pos, Position prevPos){
+void Game::processColision(Position pos){
+    if(pos.x >= BOARD_WIDTH || pos.x < 0 || pos.y < 0 || pos.y >= BOARD_HEIGHT){
+        status = GAME_OVER;
+        return;
+    }
     switch(box[pos.x][pos.y]){
-        //case CELL_SNAKE: status = GAME_OVER; break;
-        //case CELL_CHERRY: setCellType(pos, CELL_SNAKE); setCellType(prevPos, CELL_EMPTY); break;
-        case CELL_CHERRY: status = GAME_OVER; break;
-        default: setCellType(pos, CELL_SNAKE); setCellType(prevPos, CELL_EMPTY);break;
+        case CELL_SNAKE:
+            status = GAME_OVER;
+            break;
+        case CELL_CHERRY:
+            score++;
+            setCellType(pos, CELL_SNAKE);
+            cherry.addCherry();
+            break;
+        default:
+            setCellType(pos, CELL_SNAKE);
+            break;
     }
 }
 
@@ -38,9 +51,7 @@ void Game::processInput(){
         break;
     }
 
-    prevPos = snake.getNode()->position;
     snake.move();
-    processColision(snake.getNode()->position, prevPos);
 }
 
 void Game::setCellType(Position p, CellType cellType){

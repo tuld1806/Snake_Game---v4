@@ -21,14 +21,12 @@ class Snake{
 public:
     Direction currentDirection;
     Snake(Game& game_, Position start, Direction currentDirection);
-    SnakeNode* getNode() {
-        //std::cout << head->position.x <<' '<<head->position.y<<std::endl;
-        return head;
-    }
+    std::vector<SnakeNode*> getNodes();
     //void snakeLeave();
     void slideTo(Position newPosition);
     void move();
     void setDirection(Direction newDirection){ currentDirection = newDirection; }
     bool canChangeDirection(Direction newDirection);
+    void growUp(Position newPosition);
 };
 #endif // SNAKE_H_INCLUDED

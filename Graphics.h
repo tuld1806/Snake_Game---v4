@@ -7,8 +7,8 @@
 #include <iostream>
 
 enum PictureID {
-    CHERRY = 0, SNAKE_HEAD, SNAKE_VERTICAL,
-    SNAKE_HORIZONTAL, MAP, PLAY_BUTTON, PIC_COUNT
+    CHERRY = 0, SNAKE_HEAD, SNAKE_CORNER,
+    SNAKE_BODY, SNAKE_TAIL, MAP, PLAY_BUTTON, PIC_COUNT
 };
 
 void logSDLError(const std::string &msg, bool fatal = false);

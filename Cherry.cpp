@@ -1,9 +1,14 @@
 #include "Cherry.h"
 #include <cstdlib>
-#include <ctime>
-#include <iostream>
+#include "Process.h"
+#include "main.h"
 
-Position Cherry::addCherry(int width_, int height_){
-    Position p(rand() % width_, rand() % height_);
-    return p;
+void Cherry::addCherry(){
+    srand(time(0));
+    Position p;
+    do{
+        p = (rand() % BOARD_WIDTH, rand() % BOARD_HEIGHT);
+    }while(game.getCellType(p) != CELL_EMPTY);
+    cherryPos = p;
+    game.setCellType(p, CELL_CHERRY);
 }

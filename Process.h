@@ -13,20 +13,21 @@ enum GameStatus{
 };
 class Game{
 
-    int score;
     std::vector< std::vector<CellType> > box;
     GameStatus status;
 public:
     Snake snake;
     Cherry cherry;
     std:: queue<Direction> inputQueue;
+    int score;
 
     Game(int width_, int height_);
     void interpretEvent(SDL_Event e);
     void processInput();
+
     CellType getCellType(Position p)const{ return box[p.x][p.y]; }
     void setCellType(Position p, CellType cellType);
-    void processColision(Position pos, Position prevPos);
+    void processColision(Position pos);
     GameStatus getStatus()const { return status ;}
     void setStatus(GameStatus status_);
 };

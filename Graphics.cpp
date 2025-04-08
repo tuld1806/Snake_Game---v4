@@ -68,9 +68,10 @@ SDL_Texture* Graphics::loadTexture(std::string name ){
 void Graphics::loadPictures(){
 
     pictures[CHERRY] = loadTexture("cherry.png");
-    pictures[SNAKE_VERTICAL] = loadTexture("snake_vertical.png");
-    pictures[SNAKE_HORIZONTAL] = loadTexture("snake_horizontal.png");
-    pictures[SNAKE_HEAD] = loadTexture("snake_head1.png");
+    pictures[SNAKE_HEAD] = loadTexture("snake_head.png");
+    pictures[SNAKE_CORNER] = loadTexture("corner.png");
+    pictures[SNAKE_BODY] = loadTexture("body.png");
+    pictures[SNAKE_TAIL] = loadTexture("tail.png");
     pictures[MAP] = loadTexture("map.jpg");
     pictures[PLAY_BUTTON] = loadTexture("play_button.png");
 }
