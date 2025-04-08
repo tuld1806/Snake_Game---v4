@@ -1,4 +1,3 @@
-#include "Graphics.h"
 #include <cmath>
 #include "Process.h"
 
@@ -11,6 +10,7 @@ Graphics* graphics = nullptr; // global picture manager
 Game* game = new Game(BOARD_WIDTH, BOARD_HEIGHT);
 SDL_Rect playGrid = {385, 250, 150, 54};
 int highestScore = 0;
+
 int main(int argc, char* argv[]){
 
     SDL_Window* window;
@@ -19,7 +19,8 @@ int main(int argc, char* argv[]){
     graphics = new Graphics(renderer);
     SDL_Event e;
     auto start = CLOCK_NOW();
-
+    Mix_Music *gMusic = graphics->loadMusic("assets\\C418 - Moog City 2.wav");
+    graphics->play(gMusic);
     while(true){
         renderSplashScreen(renderer);
         renderGameplay(renderer);
@@ -37,6 +38,10 @@ int main(int argc, char* argv[]){
                 if (elapsed.count() > STEP_DELAY) {
                     game->processInput();
                     if(game->getStatus() == GAME_OVER)break;
+                    else if(game->isEaten == 1){
+                        graphics->play(graphics->eat_sound);
+                        game->isEaten = 0;
+                    }
                     renderGameplay(renderer);
                     start = end;
                 }
@@ -48,7 +53,7 @@ int main(int argc, char* argv[]){
         delete game;
         game = new Game(BOARD_WIDTH, BOARD_HEIGHT);
     }
-
+    if (gMusic != nullptr) Mix_FreeMusic( gMusic );
 
     delete graphics;
     quitSDL(window, renderer);
@@ -118,7 +123,7 @@ void drawCherry(SDL_Renderer* renderer, Position pos){
 }
 void renderSplashScreen(SDL_Renderer* renderer){
     std::cout << "Click play to start game." << std::endl;
-    std::cout << "Click to pause game or continue." << std::endl;
+    std::cout << "Press space to pause or continue game." << std::endl;
     SDL_RenderCopy(renderer, graphics->getImage(MAP), NULL, NULL);
     SDL_RenderCopy(renderer, graphics->getImage(PLAY_BUTTON), nullptr, &playGrid);
     SDL_RenderPresent(renderer);

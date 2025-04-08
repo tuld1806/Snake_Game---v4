@@ -5,7 +5,6 @@ Game::Game(int width_, int height_):
     box(width_, std::vector<CellType>(height_, CELL_EMPTY)),
     cherry(SMALL1, *this), status(GAME_RUNNING),
     isEaten(0), pts(0){
-    box[0][0] = CELL_CHERRY;
     box[width_/2][height_/2] = CELL_SNAKE;
     box[width_/2 - 1][height_/2] = CELL_SNAKE;
     box[width_/2 - 2][height_/2] = CELL_SNAKE;

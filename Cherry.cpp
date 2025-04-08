@@ -14,6 +14,9 @@ void Cherry::addCherry(){
     game.setCellType(p, CELL_CHERRY);
 }
 
+Cherry::Cherry(CherryStatus status_, Game& game_):status(status_), game(game_){
+    addCherry();
+}
 Cherry::~Cherry(){
     status = SMALL1;
 }

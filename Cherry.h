@@ -13,7 +13,7 @@ class Cherry{
 public:
     void addCherry();
     void changeStatus();
-    Cherry(CherryStatus status_, Game& game_):status(status_), game(game_){};
+    Cherry(CherryStatus status_, Game& game_);
     ~Cherry();
     Position getPos()const {return cherryPos;}
 };

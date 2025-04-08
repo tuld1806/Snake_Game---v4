@@ -5,6 +5,7 @@
 #include <string>
 #include <SDL.h>
 #include <iostream>
+#include <SDL_mixer.h>
 
 enum PictureID {
     CHERRY = 0, SNAKE_HEAD, SNAKE_CORNER,
@@ -29,9 +30,13 @@ class Graphics{
 public:
     Graphics(SDL_Renderer* renderer_);
     ~Graphics();
-
     void loadPictures();
     SDL_Texture* getImage(PictureID id) const { return pictures[id]; }
+    Mix_Music *loadMusic(const char* path);
+    void play(Mix_Music *gMusic);
+    Mix_Chunk* loadSound(const char* path);
+    void play(Mix_Chunk* gChunk);
+    Mix_Chunk* eat_sound;
 };
 
 #endif // GRAPHICS_H_INCLUDED
