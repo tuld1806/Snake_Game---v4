@@ -101,7 +101,7 @@ Direction rotation(Position low, Position high, Position c){
     }
     return UP;
 }
-void drawSnake(SDL_Renderer* renderer, std::vector<SnakeNode*> nodes ){
+void drawSnake(SDL_Renderer* renderer, vector<SnakeNode*> nodes ){
     int length = nodes.size();
     drawCell(renderer, graphics->getImage(SNAKE_HEAD), nodes[length - 1]->position,
              nodes[length - 1]->NodeDirection);
@@ -115,7 +115,7 @@ void drawSnake(SDL_Renderer* renderer, std::vector<SnakeNode*> nodes ){
         }
 
         else {
-            if(nextPos.y > prevPos.y)std::swap(nextPos, prevPos);
+            if(nextPos.y > prevPos.y)swap(nextPos, prevPos);
             //prevPos is always higher
             drawCell(renderer, graphics->getImage(SNAKE_CORNER), nodes[i]->position,
                  rotation(nextPos, prevPos, nodes[i]->position) );
@@ -132,8 +132,8 @@ void drawCherry(SDL_Renderer* renderer, Position pos){
     drawCell(renderer, graphics->getImage(CHERRY), pos, RIGHT);
 }
 void renderSplashScreen(SDL_Renderer* renderer){
-    std::cout << "Click play to start game." << std::endl;
-    std::cout << "Press space to pause or continue game." << std::endl;
+    cout << "Click play to start game." << endl;
+    cout << "Press space to pause or continue game." << endl;
     SDL_RenderCopy(renderer, graphics->getImage(MAP), NULL, NULL);
     SDL_RenderCopy(renderer, graphics->getImage(PLAY_BUTTON), nullptr, &playGrid);
     SDL_RenderPresent(renderer);
@@ -154,12 +154,13 @@ void renderGameOver(SDL_Renderer* renderer){
     SDL_RenderCopy(renderer, graphics->getImage(MAP), NULL, NULL);
     SDL_RenderCopy(renderer, graphics->getImage(ENDING), nullptr, &playGrid);
     SDL_RenderPresent(renderer);
-    std::cout<<"Your score is: "<<game->pts<<std::endl;
+
+    cout<<"Your score is: "<<game->pts<<endl;
     saveHighScore(game->pts, "text.txt");
     ifstream outputFile("text.txt");
     outputFile >> highestScore;
     outputFile.close();
-    std::cout<<"Your highest score is: "<<highestScore<<std::endl;
+    cout<<"Your highest score is: "<<highestScore<<endl;
     SDL_Delay(1500);
 }
 void pauseProcess(SDL_Event* e){
