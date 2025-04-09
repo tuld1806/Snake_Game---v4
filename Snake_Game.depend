@@ -210,19 +210,18 @@
 	<ctime>
 	<SDL.h>
 
-1744137720 source:c:\users\admin\documents\code\myproject\snake_game - v4\graphics.cpp
+1744174738 source:c:\users\admin\documents\code\myproject\snake_game - v4\graphics.cpp
 	"Graphics.h"
 	<SDL_image.h>
-	<SDL.h>
 
-1744137652 c:\users\admin\documents\code\myproject\snake_game - v4\graphics.h
+1744174751 c:\users\admin\documents\code\myproject\snake_game - v4\graphics.h
 	<vector>
 	<string>
 	<SDL.h>
 	<iostream>
 	<SDL_mixer.h>
 
-1744138673 source:c:\users\admin\documents\code\myproject\snake_game - v4\process.cpp
+1744138873 source:c:\users\admin\documents\code\myproject\snake_game - v4\process.cpp
 	"Process.h"
 
 1744136608 c:\users\admin\documents\code\myproject\snake_game - v4\process.h
@@ -230,17 +229,20 @@
 	"Cherry.h"
 	<queue>
 
-1744135650 c:\users\admin\documents\code\myproject\snake_game - v4\snake.h
+1744140678 c:\users\admin\documents\code\myproject\snake_game - v4\snake.h
 	"Position.h"
 	<iostream>
 	<vector>
-	"Graphics.h"
 
 1744138299 source:c:\users\admin\documents\code\myproject\snake_game - v4\snake.cpp
 	"Snake.h"
 	"Process.h"
 
-1744138311 source:c:\users\admin\documents\code\myproject\snake_game - v4\main.cpp
+1744175481 source:c:\users\admin\documents\code\myproject\snake_game - v4\main.cpp
 	<cmath>
 	"Process.h"
+	<string>
+	"Graphics.h"
+	<iostream>
+	<fstream>
 

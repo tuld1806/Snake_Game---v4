@@ -4,7 +4,7 @@
 #include "Position.h"
 #include <iostream>
 #include <vector>
-#include "Graphics.h"
+
 class Game;
 
 struct SnakeNode{

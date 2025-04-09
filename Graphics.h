@@ -7,6 +7,7 @@
 #include <iostream>
 #include <SDL_mixer.h>
 
+
 enum PictureID {
     CHERRY = 0, SNAKE_HEAD, SNAKE_CORNER,
     SNAKE_BODY, SNAKE_TAIL, MAP, PLAY_BUTTON, ENDING, PIC_COUNT
@@ -37,6 +38,7 @@ public:
     Mix_Chunk* loadSound(const char* path);
     void play(Mix_Chunk* gChunk);
     Mix_Chunk* eat_sound;
+
 };
 
 #endif // GRAPHICS_H_INCLUDED

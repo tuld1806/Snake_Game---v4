@@ -1,15 +1,25 @@
 #include <cmath>
 #include "Process.h"
+#include <string>
+#include "Graphics.h"
+#include <iostream>
+#include <fstream>
 
 void renderSplashScreen(SDL_Renderer* renderer);
 void renderGameplay(SDL_Renderer* renderer);
 void renderGameOver(SDL_Renderer* renderer);
 void pauseProcess(SDL_Event* e);
-bool pauseState = false, startState = false;
+
+using namespace std;
+
+void saveHighScore(int score, string fileName);
+bool pauseState = false;
 Graphics* graphics = nullptr; // global picture manager
 Game* game = new Game(BOARD_WIDTH, BOARD_HEIGHT);
 SDL_Rect playGrid = {385, 250, 150, 54};
-int highestScore = 0;
+SDL_Rect textRect = {840, 0, 60, 30};
+SDL_Color color = {255, 255, 0, 0};
+int highestScore;
 
 int main(int argc, char* argv[]){
 
@@ -130,26 +140,45 @@ void renderSplashScreen(SDL_Renderer* renderer){
     waitUntilClick(playGrid);
 }
 
-void renderGameplay(SDL_Renderer* renderer){
-
+void renderGameplay(SDL_Renderer* renderer) {
     SDL_RenderCopy(renderer, graphics->getImage(MAP), NULL, NULL);
     drawSnake(renderer, game->snake.getNodes());
     drawCherry(renderer, game->cherry.getPos());
-    if(pauseState)
+
+    if (pauseState)
         SDL_RenderCopy(renderer, graphics->getImage(PLAY_BUTTON), nullptr, &playGrid);
+
     SDL_RenderPresent(renderer);
 }
-
 void renderGameOver(SDL_Renderer* renderer){
     SDL_RenderCopy(renderer, graphics->getImage(MAP), NULL, NULL);
     SDL_RenderCopy(renderer, graphics->getImage(ENDING), nullptr, &playGrid);
     SDL_RenderPresent(renderer);
     std::cout<<"Your score is: "<<game->pts<<std::endl;
-    if(highestScore < game->pts)highestScore = game->pts;
+    saveHighScore(game->pts, "text.txt");
+    ifstream outputFile("text.txt");
+    outputFile >> highestScore;
+    outputFile.close();
     std::cout<<"Your highest score is: "<<highestScore<<std::endl;
     SDL_Delay(1500);
 }
 void pauseProcess(SDL_Event* e){
     if(e->type == SDL_KEYDOWN)
         if(e->key.keysym.sym == SDLK_SPACE)pauseState = !pauseState;
+}
+
+void saveHighScore(int score, string fileName) {
+    int highScore = 0;
+    ifstream inputFile(fileName);
+    if (inputFile.is_open()) {
+        inputFile >> highScore;
+        inputFile.close();
+    }
+    if (score > highScore) {
+        ofstream outputFile(fileName);
+        if (outputFile.is_open()) {
+            outputFile << score;
+            outputFile.close();
+        }
+    }
 }

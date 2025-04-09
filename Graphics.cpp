@@ -1,6 +1,6 @@
 #include "Graphics.h"
 #include <SDL_image.h>
-#include <SDL.h>
+
 
 void logSDLError(const std::string &msg, bool fatal){
     std::cout << msg << " Error: " << SDL_GetError() << std::endl;
@@ -28,12 +28,14 @@ void initSDL(SDL_Window* &window, SDL_Renderer* &renderer, int screenWidth, int 
     SDL_RenderSetLogicalSize(renderer, screenWidth, screenHeight);
 
     if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 ) {
-    logSDLError( "SDL_mixer could not initialize! SDL_mixer Error: %s\n",
+        logSDLError( "SDL_mixer could not initialize! SDL_mixer Error: %s\n",
         Mix_GetError() );
     }
+
 }
 
 void quitSDL(SDL_Window* window, SDL_Renderer* renderer){
+    Mix_Quit();
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
@@ -120,7 +122,7 @@ void Graphics::play(Mix_Music *gMusic){
 Mix_Chunk* Graphics::loadSound(const char* path) {
     Mix_Chunk* gChunk = Mix_LoadWAV(path);
     if (gChunk == nullptr) {
-    SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION,SDL_LOG_PRIORITY_ERROR,"Could not load sound! SDL_mixer Error: %s", Mix_GetError());
+        SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION,SDL_LOG_PRIORITY_ERROR,"Could not load sound! SDL_mixer Error: %s", Mix_GetError());
     }
 }
 void Graphics::play(Mix_Chunk* gChunk) {
@@ -128,5 +130,4 @@ void Graphics::play(Mix_Chunk* gChunk) {
         Mix_PlayChannel( -1, gChunk, 0 );
     }
 }
-
 
